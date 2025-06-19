@@ -1,0 +1,12 @@
+@font-face {
+	font-family: "League";
+	font-style: normal;
+	src: url("../src/assets/League_font.otf") format("opentype");
+}
+
+* {
+	font-family: "League", sans-serif;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
