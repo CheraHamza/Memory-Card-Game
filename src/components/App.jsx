@@ -204,6 +204,10 @@ function CardList({ cards, numberOfCards }) {
 				<p>Score : {score}</p>
 				<p>Best Score : {bestScore}</p>
 			</div>
+			<p className="instructions">
+				Get points by clicking on an image but don't click on any more than
+				once!
+			</p>
 			{isLoading ? (
 				<div className="loading-container">
 					<div className="loading-spinner"></div>
