@@ -1,24 +1,398 @@
-.card-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	margin-block: 20px;
-	row-gap: 20px;
-	column-gap: 10px;
+.App {
+	background-image: url("/landscape.avif");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-color: rgba(0, 0, 0, 0.718);
+	background-blend-mode: darken;
+	color: white;
+	min-height: 100vh;
+	position: relative;
 }
 
-.card {
+.welcome-screen {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 10px;
-    border: 2px solid #000000;
+	justify-content: center;
+	height: 100vh;
 }
 
-.card img {
-	width: 250px;
+.welcome-screen h1 {
+	color: #cead09;
+	font-size: 3rem;
+	margin-bottom: 40px;
 }
 
-.card p {
+.welcome-screen h2 {
+	font-size: 2rem;
+	margin-bottom: 30px;
+}
+
+.welcome-screen > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+.welcome-screen button {
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.welcome-screen button > span {
 	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	color: white;
+	height: 100%;
+	width: 100%;
+	cursor: var(--cursor-hover);
+	will-change: transform;
+	transition: color 0.3s, transform 0.3s;
+}
+
+.welcome-screen button:hover span,
+.welcome-screen button:focus-visible > span {
+	color: #cead09;
+	transform: scale(1.15);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.header h1 {
+	font-size: 2rem;
+	color: #cead09;
+	margin-bottom: 30px;
+}
+
+.header h2 {
+	font-size: 1.2rem;
+}
+
+.level-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.level-buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.level-buttons > button {
+	opacity: 1;
+	background-color: transparent;
+	border: none;
+	outline: none;
+}
+
+.level-buttons > button > img {
+	width: 30px;
+	height: 30px;
+	cursor: var(--cursor-hover);
+	transition: transform 0.3s;
+}
+
+.level-buttons > button:hover > img.left,
+.level-buttons > button:focus-visible > img.left {
+	transform: translateX(-5px);
+}
+
+.level-buttons > button:hover > img.right,
+.level-buttons > button:focus-visible > img.right {
+	transform: translateX(5px);
+}
+
+.level-buttons > button:focus-visible > img.left,
+.level-buttons > button:focus-visible > img.right {
+	outline: 2px solid #cead09;
+	border-radius: 5px;
+}
+
+.score-wrapper {
+	position: absolute;
+	top: 20px;
+	right: 5px;
+}
+
+.score-wrapper p {
+	font-size: 0.9rem;
+}
+
+.score-wrapper p:first-child {
+	margin-bottom: 5px;
+}
+
+.card-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 70px;
+	padding-block: 40px;
+}
+
+.card-wrapper {
+	width: 190px;
+	height: 350px;
+	perspective: 600px;
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	transition: transform 1s, scale 0.3s;
+	transform-style: preserve-3d;
+	will-change: transform;
+	outline: none;
+}
+
+.card:hover {
+	scale: 1.05;
+}
+
+.card-face {
+	z-index: 2;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	background-color: white;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.card-face,
+.card-face * {
+	cursor: var(--cursor-hover);
+}
+
+.card-face:hover,
+.card:focus-visible .card-face {
+	background-color: #cead09c9;
+	color: white;
+}
+
+.card:focus-visible {
+	scale: 1.05;
+}
+
+.card-face img {
+	width: 150px;
+}
+
+.card-face p {
+	width: 150px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 1.2rem;
 	font-weight: 600;
+}
+
+.card-back {
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	background-image: url("/card_back.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border: #cead0987 solid 2px;
+	transform: rotateY(180deg);
+}
+
+.card.flipped {
+	transform: rotateY(180deg);
+}
+
+.loading-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 40px;
+	min-height: 200px;
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.loading-spinner {
+	width: 100px;
+	height: 100px;
+	border: 10px solid #f3f3f3;
+	border-top: 10px solid #cead09;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+	margin-bottom: 16px;
+}
+
+.loading-container p {
+	font-size: 18px;
+	color: #ffffff;
+	margin: 0;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+dialog {
+	display: none;
+	opacity: 0;
+	transition: opacity 0.5s, display 0.5s allow-discrete, transform 0.5s;
+	will-change: transform, opacity;
+}
+
+dialog[open] {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.936);
+	color: white;
+	border: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 20;
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@starting-style {
+	dialog[open] {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+}
+
+dialog h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.victory-dialog > img {
+	width: 550px;
+}
+
+.defeat-dialog > img {
+	width: 400px;
+	margin-block: 10px;
+}
+
+.score-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+.play-again-button {
+	display: flex;
+	margin-top: 20px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+
+.play-again-button span {
+	font-size: 1rem;
+	padding: 10px;
+	background-color: white;
+	border: #cead09 solid 2px;
+	color: #cead09;
+	cursor: var(--cursor-hover);
+	will-change: transform;
+	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.play-again-button:hover span,
+.play-again-button:focus-visible span {
+	transform: scale(1.05);
+	background-color: #cead09;
+	color: white;
+}
+
+@media (max-width: 650px) {
+	.score-wrapper {
+		position: static;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	.card-list {
+		gap: 50px;
+	}
+
+	.card-face img {
+		width: 110px;
+	}
+	.card-face p {
+		width: 110px;
+		font-size: 1rem;
+	}
+	.card-wrapper {
+		width: 150px;
+		height: 250px;
+		perspective: 600px;
+	}
+
+	.welcome-screen h1 {
+		font-size: 2.5rem;
+	}
+}
+
+@media (max-width: 500px) {
+	.victory-dialog > img {
+		width: 400px;
+	}
+}
+
+@media (max-width: 450px) {
+	.welcome-screen h1 {
+		font-size: 1.5rem;
+	}
+	.welcome-screen h2 {
+		font-size: 1.2rem;
+	}
+	.welcome-screen button > span {
+		font-size: 1rem;
+	}
+
+	.header h1 {
+		font-size: 1.5rem;
+	}
+	.header h2 {
+		font-size: 1rem;
+	}
+
+	.defeat-dialog > img {
+		width: 350px;
+	}
 }
