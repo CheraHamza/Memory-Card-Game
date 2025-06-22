@@ -1,3 +1,8 @@
+:root {
+	--cursor: url("../src/assets/normal.cur"), auto;
+	--cursor-hover: url("../src/assets/hover.cur"), auto;
+}
+
 @font-face {
 	font-family: "League";
 	font-style: normal;
@@ -9,4 +14,9 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	cursor: var(--cursor);
+}
+
+html {
+	height: 100%;
 }
