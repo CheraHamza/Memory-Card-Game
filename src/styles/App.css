@@ -8,6 +8,7 @@
 	background-blend-mode: darken;
 	color: white;
 	min-height: 100vh;
+	width: 100%;
 	position: relative;
 }
 
@@ -138,6 +139,7 @@ p.instructions {
 	text-align: center;
 	margin-top: 10px;
 	opacity: 0.7;
+	padding-inline: 5px;
 }
 
 .card-list {
@@ -373,6 +375,40 @@ dialog h2 {
 	.welcome-screen h1 {
 		font-size: 2.5rem;
 	}
+
+	.card-face:hover {
+		background-color: white;
+		color: black;
+	}
+
+	.card-face:active {
+		background-color: #cead09c9;
+		color: white;
+	}
+
+	.card:hover {
+		scale: 1;
+	}
+
+	.card:active {
+		scale: 1.05;
+	}
+
+	.level-buttons > button:hover > img.left {
+		transform: translateX(0px);
+	}
+
+	.level-buttons > button:active > img.left {
+		transform: translateX(-5px);
+	}
+
+	.level-buttons > button:hover > img.right {
+		transform: translateX(0px);
+	}
+
+	.level-buttons > button:active > img.right {
+		transform: translateX(5px);
+	}
 }
 
 @media (max-width: 500px) {
@@ -397,6 +433,14 @@ dialog h2 {
 	}
 	.header h2 {
 		font-size: 1rem;
+	}
+
+	.score-wrapper p {
+		font-size: 0.8rem;
+	}
+
+	p.instructions {
+		font-size: 0.6rem;
 	}
 
 	.defeat-dialog > img {

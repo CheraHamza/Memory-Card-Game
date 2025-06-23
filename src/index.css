@@ -17,6 +17,8 @@
 	cursor: var(--cursor);
 }
 
-html {
+html,
+body {
 	height: 100%;
+	width: 100%;
 }
