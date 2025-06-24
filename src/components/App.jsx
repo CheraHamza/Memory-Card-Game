@@ -5,7 +5,14 @@ function App() {
 	const [cards, setCards] = useState(null);
 	const [level, setLevel] = useState(null);
 
-	const numberOfCards = level === "Easy" ? 10 : level === "Medium" ? 20 : 30;
+	const numberOfCards =
+		level === "Easy"
+			? 10
+			: level === "Medium"
+			? 20
+			: level === "Hard"
+			? 30
+			: 100;
 
 	useEffect(() => {
 		const controller = new AbortController();
@@ -68,6 +75,9 @@ function App() {
 								if (level === "Hard") {
 									setLevel("Medium");
 								}
+								if (level === "Extreme") {
+									setLevel("Hard");
+								}
 							}}
 						>
 							<img className="left" src="/left.svg" alt="" />
@@ -81,6 +91,9 @@ function App() {
 								}
 								if (level === "Medium") {
 									setLevel("Hard");
+								}
+								if (level === "Hard") {
+									setLevel("Extreme");
 								}
 							}}
 						>
@@ -111,6 +124,21 @@ function WelcomeScreen({ setLevel }) {
 
 				<button title="30 Cards" onClick={() => setLevel("Hard")}>
 					<span>Hard</span>
+				</button>
+
+				<button title="100 Cards" onClick={() => setLevel("Extreme")}>
+					<span>
+						Extreme
+						<sup>
+							<span className="dedication">
+								dedicated to
+								<span className="marwa"> Marwa </span>
+								<span className="heart">
+									<img src="/heart.svg" alt="" />
+								</span>
+							</span>
+						</sup>
+					</span>
 				</button>
 			</div>
 		</div>
@@ -159,6 +187,10 @@ function CardList({ cards, numberOfCards }) {
 
 	const shuffleCards = () => {
 		setAreCardsFlipped(true);
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 
 		setTimeout(() => {
 			const shuffledList = [...activeCardList];
