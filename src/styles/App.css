@@ -56,12 +56,13 @@
 	background-color: transparent;
 	border: none;
 	outline: none;
+	display: flex;
+	align-items: center;
 }
 
 .welcome-screen button > span {
+	position: relative;
 	font-size: 1.5rem;
-	display: flex;
-	align-items: center;
 	color: white;
 	height: 100%;
 	width: 100%;
@@ -70,10 +71,61 @@
 	transition: color 0.3s, transform 0.3s;
 }
 
-.welcome-screen button:hover span,
+.welcome-screen button:hover > span,
 .welcome-screen button:focus-visible > span {
 	color: #cead09;
 	transform: scale(1.15);
+}
+
+.welcome-screen button > span > sup {
+	display: inline;
+	visibility: hidden;
+	opacity: 0;
+	white-space: nowrap;
+	position: absolute;
+	color: white;
+	font-size: 0.5rem;
+	margin-left: 2px;
+	transition: opacity 1.5s, visibility 1.5s;
+	will-change: opacity;
+}
+
+.welcome-screen button:hover span > sup,
+.welcome-screen button:focus-visible span > sup {
+	opacity: 1;
+	visibility: visible;
+}
+
+.marwa {
+	transition: color 1.5s;
+}
+
+.welcome-screen button:hover span > sup .marwa,
+.welcome-screen button:focus-visible > span > sup .marwa {
+	color: #de3c9d;
+}
+
+.heart {
+	animation: pulse 2s ease-in-out infinite;
+	display: inline-flex;
+	will-change: transform;
+}
+
+.heart img {
+	width: 7px;
+	height: 7px;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.5);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 .header {
@@ -440,6 +492,14 @@ dialog h2 {
 	}
 	.welcome-screen button > span {
 		font-size: 1rem;
+	}
+	.welcome-screen button > span > sup {
+		font-size: 0.3rem;
+	}
+
+	.heart img {
+		width: 5px;
+		height: 5px;
 	}
 
 	.header h1 {
