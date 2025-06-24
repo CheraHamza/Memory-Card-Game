@@ -12,7 +12,7 @@ function App() {
 			? 20
 			: level === "Hard"
 			? 30
-			: 100;
+			: 50;
 
 	useEffect(() => {
 		const controller = new AbortController();
@@ -126,7 +126,7 @@ function WelcomeScreen({ setLevel }) {
 					<span>Hard</span>
 				</button>
 
-				<button title="100 Cards" onClick={() => setLevel("Extreme")}>
+				<button title="50 Cards" onClick={() => setLevel("Extreme")}>
 					<span>
 						Extreme
 						<sup>
