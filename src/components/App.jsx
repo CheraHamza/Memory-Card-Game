@@ -24,7 +24,6 @@ function App() {
 					{ mode: "cors", signal: controller.signal }
 				);
 				const json = await res.json();
-				console.log(json);
 
 				let cards = [];
 				for (const [key, value] of Object.entries(json.data)) {
